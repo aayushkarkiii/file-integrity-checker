@@ -1,0 +1,15 @@
+[Unit]
+Description=File Integrity Monitoring Check
+Documentation=https://github.com/aayush/File-Integrity-Checker
+After=local-fs.target network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/fim --config /etc/fim/fim.conf check
+StandardOutput=journal
+StandardError=journal
+# Exit code 0 (clean) and 1 (changes detected) should be handled without systemd service crash
+SuccessExitStatus=0 1
+
+[Install]
+WantedBy=multi-user.target

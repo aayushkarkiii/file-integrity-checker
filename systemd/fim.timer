@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily File Integrity Monitoring Check Timer
+Documentation=https://github.com/aayush/File-Integrity-Checker
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=5m
+
+[Install]
+WantedBy=timers.target

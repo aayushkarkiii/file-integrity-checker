@@ -1,0 +1,14 @@
+# Baseline databases and local runs
+*.db
+*.manifest
+data/
+
+# Logs
+*.log
+
+# Editor & OS artifacts
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store

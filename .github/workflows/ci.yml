@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  lint-and-test:
+    name: Shellcheck & Bats Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: './bin'
+
+      - name: Setup Bats
+        uses: bats-core/bats-action@3.0.0
+
+      - name: Run Bats Tests
+        run: bats tests/fim.bats
+
+      - name: Build Docker Image
+        run: docker build -t file-integrity-checker:test .
